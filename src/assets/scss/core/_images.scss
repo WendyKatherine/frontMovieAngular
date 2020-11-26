@@ -1,0 +1,19 @@
+.img-thumbnail{
+    border-radius: 16px;
+}
+.img-raised{
+    @include shadow-big-image();
+}
+
+.rounded{
+    border-radius: $border-radius-large !important;
+}
+
+.img-1{
+    img{
+        width: 20%;
+        transform: translate(500px, -300px);
+        display: flex;
+        position: absolute;
+    }
+}

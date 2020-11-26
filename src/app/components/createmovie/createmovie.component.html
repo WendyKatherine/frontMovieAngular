@@ -1,0 +1,185 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-8">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Create New Movie</h4>
+            <p class="card-category">Complete your new Movie</p>
+          </div>
+          <div class="card-body" *ngIf="movie">
+            <form #movieForm="ngForm" (ngSubmit)="onSubmit(movieForm)">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      class="cont"
+                      type="text"
+                      name="title"
+                      #title="ngModel"
+                      [(ngModel)]="movie.title"
+                      required
+                      placeholder="Title"
+                    />
+                  </mat-form-field>
+                  <span
+                    class="form_error"
+                    *ngIf="title.touched && !title.valid"
+                  >
+                    Required field Name.
+                  </span>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      name="description"
+                      #description="ngModel"
+                      [(ngModel)]="movie.description"
+                      required
+                      placeholder="Description"
+                    />
+                  </mat-form-field>
+                  <span
+                    class="form_error"
+                    *ngIf="description.touched && !description.valid"
+                  >
+                    Required field Description.
+                  </span>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      name="duration"
+                      #duration="ngModel"
+                      [(ngModel)]="movie.duration"
+                      required
+                      placeholder="Duration"
+                    />
+                  </mat-form-field>
+                  <span
+                    class="form_error"
+                    *ngIf="duration.touched && !duration.valid"
+                  >
+                    Required field Duration.
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      type="text"
+                      name="category"
+                      #category="ngModel"
+                      [(ngModel)]="movie.category"
+                      required
+                      placeholder="Category"
+                      type="text"
+                    />
+                  </mat-form-field>
+                  <span
+                    class="form_error"
+                    *ngIf="category.touched && !category.valid"
+                  >
+                    Required field Category.
+                  </span>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      type="text"
+                      name="trailer"
+                      #trailer="ngModel"
+                      [(ngModel)]="movie.trailer"
+                      required
+                      placeholder="trailer"
+                      type="text"
+                    />
+                  </mat-form-field>
+                  <span
+                    class="form_error"
+                    *ngIf="trailer.touched && !trailer.valid"
+                  >
+                    Required field trailer.
+                  </span>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      type="text"
+                      name="releasedate"
+                      #releasedate="ngModel"
+                      [(ngModel)]="movie.releasedate"
+                      required
+                      placeholder="Release Date"
+                      type="number"
+                    />
+                  </mat-form-field>
+                  <span
+                    class="form_error"
+                    *ngIf="releasedate.touched && !releasedate.valid"
+                  >
+                    Required field Release Date.
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" for="image">
+                  <span class="image" *ngIf="movie.image" style="float: none">
+                    <img
+                      src="{{ url + 'get-imagemovie/' + movie.image }}"
+                      width="100px"
+                    />
+                  </span>
+                  <input
+                    (change)="fileChangeEvent($event)"
+                    name="image"
+                    placeholder="Upload Image"
+                    type="file"
+                  />
+                </div>
+              </div>
+
+              <div
+                class="message success"
+                *ngIf="status == 'success'"
+                style="font-size: 23px; color: #af2fd0"
+              >
+                movie created successfully, you can see it
+                <a
+                  [routerLink]="['/movie', save_movie._id]"
+                  style="color: #531267"
+                  >right here</a
+                >
+              </div>
+
+              <div
+                class="message failed"
+                *ngIf="status == 'failed'"
+                style="font-size: 23px; color: #af2fd0"
+              >
+                The movie could not be created
+              </div>
+              <button
+                mat-raised-button
+                type="submit"
+                value="Enviar"
+                [disabled]="!movieForm.form.valid"
+                class="btn pull-right"
+              >
+                Create New
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

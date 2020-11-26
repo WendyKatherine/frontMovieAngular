@@ -1,0 +1,80 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12" *ngIf="movie">
+        <div class="card" id="transparent">
+          <h2>{{ movie.title }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-header-danger" *ngIf="movie">
+            <h4 class="card-title">{{ movie.category }}</h4>
+            <p class="card-category">Duration: {{ movie.duration }}</p>
+          </div>
+          <div class="card-body" *ngIf="movie">
+            <p class="description">{{ movie.description }}</p>
+
+            <div
+              class="btn-group-detail mt-2 mb-4"
+              role="group"
+              aria-label="actionButtons"
+            >
+              <a
+                href="#"
+                class="d-block btn btn-outline-light"
+                [routerLink]="['/movies']"
+                [routerLinkActive]="['actived']"
+                >Back</a
+              >
+            </div>
+
+            <p *ngIf="confirm == false">
+              <a
+                [routerLink]="['/edit-movie', movie._id]"
+                class="btn btn-round"
+                id="center"
+                >Editar</a
+              >
+              <a (click)="setConfirm(true)" class="btn btn-round" id="center"
+                >Borrar</a
+              >
+            </p>
+
+            <p *ngIf="confirm == true">
+              <span>¿Estas seguro de eliminar el movie?</span>
+              <br />
+              <a (click)="setConfirm(false)" class="btn btn-round" id="center"
+                >Cancelar</a
+              >
+              <a
+                (click)="deleteMovie(movie._id)"
+                class="btn btn-round"
+                id="center"
+                >Eliminar Definitivo</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body" *ngIf="movie">
+            <div class="imagen" *ngIf="movie.image">
+              <img src="{{ url + 'get-image/' + movie.image }}" />
+              <a
+                class="btn btn-round"
+                id="center"
+                target="_blank"
+                [href]="'https://www.youtube.com/' + movie.trailer"
+                >Ver Trailer</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

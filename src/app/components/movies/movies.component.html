@@ -1,0 +1,31 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" id="transparent">
+          <h2>Movies.</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let movie of movies" class="movie" class="col-md-3">
+        <div class="card">
+          <a [routerLink]="['/movie', movie._id]">
+            <div class="card-body">
+              <div class="img">
+                <img
+                  src="{{ url + 'get-image/' + movie.image }}"
+                  *ngIf="movie.image"
+                />
+              </div>
+            </div>
+            <div class="card-header card-header-danger" *ngIf="movie">
+              <h4 class="card-title">{{ movie.title }}</h4>
+              <p class="card-category">{{ movie.category }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
